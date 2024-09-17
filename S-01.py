@@ -16,7 +16,7 @@ from prompt_toolkit.shortcuts import print_formatted_text
 
 session = PromptSession()
 
-API_KEY = "YOur API key"
+API_KEY = "Your API key"
 genai.configure(api_key=API_KEY)
 
 # Set up the model
