@@ -161,7 +161,9 @@ def exibir_mensagem():
 
         resposta = chat.send_message(
             f"Organize essa lista, {prev} como se fosse ela tivesse sido retornada pela função previsão para o dia de hoje, "
-            f"caso esteja vazia, retorne apenas a frase: Não existem dados para o dia 'informe o dia por extenso'.")
+            f"caso esteja vazia, retorne apenas a frase: Não existem dados para o dia 'informe o dia por extenso'."
+            f"Caso seja o dia atual responda: 'Não existem dados pra o dia de hoje.'"
+            f"Ao enviar essa mensagem, mande ela na linguaguem atual da conversa.")
 
         texto_resposta = resposta.text
         if '\n' in texto_resposta:
