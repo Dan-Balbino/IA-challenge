@@ -16,12 +16,12 @@ from prompt_toolkit.shortcuts import print_formatted_text
 
 session = PromptSession()
 
-API_KEY = "Your API key"
+API_KEY = "AIzaSyBow1PWoN12TuqSw7wudJP2NdAS0OcRYMo"
 genai.configure(api_key=API_KEY)
 
 # Set up the model
 generation_config = {
-    "temperature": 1,
+    "temperature": 0.5,
     "top_p": 0.95,
     "top_k": 64,
     "max_output_tokens": 8192,
@@ -155,7 +155,7 @@ def previsao(dia: str = '09', mes: str = '08', ano: str = '2024', msg_auto: bool
 
 def exibir_mensagem():
     while True:
-        time.sleep(15)
+        time.sleep(300)
 
         prev = previsao(msg_auto=True)
 
@@ -232,7 +232,7 @@ SELECT
     NULL AS vibracao_media,
     NULL AS umidade_media
 FROM dados
-WHERE (temperatura > 40 OR corrente > 4 OR vibracao > 5.5 OR umidade > 18)
+WHERE (temperatura > 40 OR corrente > 5 OR vibracao > 5.5 OR umidade > 18)
   AND strftime('%m', timestamp) = '08' AND strftime('%Y', timestamp) = '2024'
 ORDER BY tipo, valor;
 """
@@ -340,20 +340,3 @@ while True:
 
     print(texto_resposta)
     print("--" * 30)
-
-# Me diga a hora da última leitura realizada
-# Me diga a hora em que a última leitura foi realizada
-#  Me diga os dados do dia 7 de agosto
-# Em qual dia foi realizado a última leitura
-# Me diga a média de temperatura do motor da base no dia 7 de agosto
-# SELECT ROUND(AVG(temperatura),2) AS Temperatura_Media FROM dados WHERE sensor_id = 1 and timestamp BETWEEN '2024-05-21 00:00:00' AND '2024-05-21 23:59:59'
-# SELECT d.sensor_id, AVG(d.temperatura) AS media_temperatura, AVG(d.corrente) AS media_corrente, AVG(d.vibracao) AS media_vibracao, AVG(d.umidade) AS media_umidade, MIN(d.timestamp) AS primeira_leitura, MAX(d.timestamp) AS ultima_leitura, l.hora AS hora_limite_excedido, l.dado AS dado_limite_excedido, CASE WHEN AVG(d.temperatura) > 40 THEN 'Temperatura' WHEN AVG(d.corrente) > 3 THEN 'Corrente' WHEN AVG(d.vibracao) > 4.5 THEN 'Vibracao' WHEN AVG(d.umidade) > 15 THEN 'Umidade' ELSE 'Dentro dos Limites' END AS limite_excedido FROM dados d LEFT JOIN (SELECT sensor_id, timestamp AS hora, 'temperatura' AS dado FROM dados WHERE temperatura > 40 UNION SELECT sensor_id, timestamp AS hora, 'corrente' AS dado FROM dados WHERE corrente > 3 UNION SELECT sensor_id, timestamp AS hora, 'vibracao' AS dado FROM dados WHERE vibracao > 4.5 UNION SELECT sensor_id, timestamp AS hora, 'umidade' AS dado FROM dados WHERE umidade > 15) AS l ON d.sensor_id = l.sensor_id AND DATE(d.timestamp) = DATE(l.hora) WHERE DATE(d.timestamp) = '2024-05-21' GROUP BY d.sensor_id, l.hora, l.dado;
-# Me de um resumo do mês de agosto
-# Me diga os dados do dia 9 de agosto
-
-
-# 40, 3, 4,5, 15
-# temp, corrente, vibração, umidade
-
-# Base: X
-# Outros: Z e Y
