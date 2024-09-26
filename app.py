@@ -16,9 +16,6 @@ from prompt_toolkit.shortcuts import print_formatted_text
 
 session = PromptSession()
 
-API_KEY = "AIzaSyBow1PWoN12TuqSw7wudJP2NdAS0OcRYMo"
-genai.configure(api_key=API_KEY)
-
 # Set up the model
 generation_config = {
     "temperature": 0.5,
