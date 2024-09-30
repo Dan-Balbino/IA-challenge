@@ -9,9 +9,9 @@ import ast
 import threading
 import time
 import sys
+import requests
 from prompt_toolkit import PromptSession
 from prompt_toolkit.shortcuts import print_formatted_text
-from api_functions import clima_dia, clima_mes
 
 # ----------------------------------------
 
@@ -108,7 +108,6 @@ def previsao(dia: str = '09', mes: str = '08', ano: str = '2024', msg_auto: bool
         ORDER BY 
             sensor_id;
         """
-        
     else:
         comando_sql = """
         WITH UltimaLeituraGlobal AS (
@@ -162,7 +161,7 @@ def previsao(dia: str = '09', mes: str = '08', ano: str = '2024', msg_auto: bool
         return str(lista_previsoes)
 
 
-def exibir_mensagem():
+def exibir_mensagem() -> None:
     while True:
         time.sleep(300)
 
@@ -181,7 +180,27 @@ def exibir_mensagem():
         sys.stdout.write("\033[F")
         print_formatted_text(f"\n{texto_resposta}\n{'--' * 30}")
 
+
+# Essa é a função Japa
+def pergunta() -> None:
+    while True:
+        user_input = session.prompt(": ")
+
+        if user_input == "sair":
+            break
+
+        resposta = chat.send_message(user_input)
+        texto_resposta = resposta.text
+
+        if '\n' in texto_resposta:
+            texto_resposta = texto_resposta.rstrip('\n')
+
+        print(texto_resposta)
+        print("--" * 30)
+
+
 # Cria e inicia uma thread para exibir a mensagem
+
 thread_mensagem = threading.Thread(target=exibir_mensagem)
 thread_mensagem.daemon = True  # Faz com que a thread termine quando o programa principal termina
 thread_mensagem.start()
@@ -306,7 +325,6 @@ Execute também a função "clima_mes" passando como parâmetros o ano, o mês, 
 Exiba apenas os dados que forem retornados pela função:
 
 A primeira leitura do mês foi realizada no dia X, às [hora:minutos], e a última no dia Y, às [hora:minutos].
-Temperatura máxima do mês: [teperatura máxima retornada pela função clima_mes] | Temperatura mínima do mês: [teperatura miníma retornada pela função clima_mes] | Umidade média do mês: [umidade média retornada pela função clima_mes]
 
 Médias de dados de [Mês]:
 * Motor da base *
@@ -340,7 +358,6 @@ Execute também a função "clima_dia" passando como parâmetros o ano, o mês, 
 Exiba apenas os dados que forem retornados pela função:
 
 No dia [Data], a primeira leitura foi às [hora:minutos], e a última às [hora:minutos].
-Temperatura máxima do dia: [teperatura máxima retornada pela função clima_dia] | Temperatura mínima do dia: [teperatura miníma retornada pela função clima_dia] | Umidade média do dia: [umidade média retornada pela função clima_dia]
 
 * Motor da base *
     * Temperatura média: X° C
@@ -372,25 +389,11 @@ model = genai.GenerativeModel(model_name="gemini-1.5-flash-latest",
                               generation_config=generation_config,
                               system_instruction=system_instruction,
                               safety_settings=safety_settings,
-                              tools=[consulta, previsao, clima_mes, clima_dia])
+                              tools=[consulta, previsao])
 
 chat = model.start_chat(enable_automatic_function_calling=True, history=[])
 
-while True:
-    user_input = session.prompt(": ")
-
-    if user_input == "sair":
-        break
-
-    resposta = chat.send_message(user_input)
-    texto_resposta = resposta.text
-
-    if '\n' in texto_resposta:
-        texto_resposta = texto_resposta.rstrip('\n')
-
-    print(texto_resposta)
-    print("--" * 30)
-
+pergunta()
 print("Arrume Danilo")
 
 # Me diga a hora da última leitura realizada
