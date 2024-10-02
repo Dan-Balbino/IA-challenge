@@ -76,7 +76,7 @@ def consulta(sql: str) -> list:
         c.execute(sql)
         resposta = c.fetchall()
         conexao.close()
-        print("Requisição feita \n----------------------")
+        #print("Requisição feita \n----------------------")
         return resposta
     except:
         return []
