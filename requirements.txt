@@ -1,6 +1,5 @@
-google-generativeai
-scikit-learn
-numpy
-prompt_toolkit
 flask
-mysql
+google-generativeai
+fpdf
+datetime
+sqlite3

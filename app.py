@@ -1,6 +1,12 @@
-from flask import Flask, render_template, request
-from AI import AI_request, AI_predict
-import threading
+# ------------- Importações --------------
+from flask import Flask, render_template, jsonify, request
+from AI import AI_request, AI_predict, AI_pdf
+# ----------------------------------------
+
+"""
+Alterar banco de dados: AI_functions
+Alterar tabela: Ai_specs, linha 162
+"""
 
 app = Flask(__name__)
 
@@ -10,16 +16,17 @@ def index():
 
 @app.route("/get", methods = ["GET", "POST"])
 def chat():
-    msg = request.form["msg"]
-    input = msg
-    return AI_request(input)
+    input = request.form["msg"]
+    
+    if "pdf" in input.lower():
+        AI_pdf(input)
+        return jsonify(url=f'relatório.pdf')
+    else:
+        return AI_request(input)
 
+@app.route("/auto", methods = ["GET"])
+def automatic_message():
+    return AI_predict()
 
 if __name__ == "__main__":
-    # thread_mensagem = threading.Thread(target = exibir_mensagem)
-    # thread_mensagem.daemon = True
-    # thread_mensagem.start()
-     
     app.run(debug=True)
-    
-    
