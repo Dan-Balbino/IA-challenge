@@ -1,36 +1,52 @@
 # ------------- Importações --------------
 import sqlite3
+from .SQL_comandos import *
 # ----------------------------------------
 
-def consulta(sql: str) -> list:
-    sql = rf'{sql}'
-    raw = r'\"'
-    raw2 = r"\'"
-    raw3 = r"\\"
-    raw4 = r"\\'"
+def consulta(sql_: str='', pre_comando: str = '', dia_: str='', mes_: str='', ano_:str= '', outro_:str = '') -> list:
+    if pre_comando != '':
+        match pre_comando:
+            case 'mes':
+                sql = mes
+                sql = sql.replace("WHERE strftime('%m', data_registro) = '09' ", f"WHERE strftime('%m', data_registro) = '{mes_}' ", )
+                sql = sql.replace("AND strftime('%Y', data_registro) = '2024'", f"AND strftime('%Y', data_registro) = '{ano_}'")
+            case 'ranking':
+                sql = ranking
+                sql = sql.replace("AVG(temperatura) AS media ", f"AVG({outro_}) AS media ")
+                sql = sql.replace("strftime('%m', data_registro) = '10' ", f"strftime('%m', data_registro) = '{dia_}' ")
+                sql = sql.replace("AND strftime('%Y', data_registro) = '2024'", f"AND strftime('%Y', data_registro) = '{ano_}'")
+            case 'dia':
+                sql = dia
+                sql = sql.replace("WHERE DATE(d.data_registro) = '2024-05-21'", f"WHERE DATE(d.data_registro) = '{ano_}-{mes_}-{dia_}'")
+                
+    else:
+        sql = rf'{sql_}'
+        raw = r'\"'
+        raw2 = r"\'"
+        raw3 = r"\\"
+        raw4 = r"\\'"
 
-    if r'\"' in sql:
-        sql = sql.replace(raw, '"')
-    if r"\'" in sql:
-        sql = sql.replace(raw2, "'")
-    if r"\\" in sql:
-        sql = sql.replace(raw3, "")
-    if r"\\'" in sql:
-        sql = sql.replace(raw4, "'")
+        if r'\"' in sql:
+            sql = sql.replace(raw, '"')
+        if r"\'" in sql:
+            sql = sql.replace(raw2, "'")
+        if r"\\" in sql:
+            sql = sql.replace(raw3, "")
+        if r"\\'" in sql:
+            sql = sql.replace(raw4, "'")
+        if r'\n' in sql:
+            sql = sql.replace(r'\n', '')
 
-    if r'\n' in sql:
-        sql = sql.replace(r'\n', '')
-
-    #print(sql)
-    #print("----------------------")
+    print(sql)
+    print("----------------------")
 
     # Mude o nome do banco de dados aqui
-    conexao = sqlite3.connect('sensores_db')
+    conexao = sqlite3.connect('dados.db')
     c = conexao.cursor()
     c.execute(sql)
     resposta = c.fetchall()
     conexao.close()
-    #print("Requisição feita \n----------------------")
+    print("Requisição feita \n----------------------")
     return resposta
     
 class Motor:
@@ -104,7 +120,7 @@ def previsao(dia: str = '08', mes: str = '10', ano: str = '2024', msg_auto: bool
             temperatura,
             corrente,
             vibração_base,
-            vibracao_braço,
+            vibracao_braco,
             vibracao_garra 
         FROM 
             dados

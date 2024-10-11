@@ -5,13 +5,13 @@ Este manual contém informações sobre a operação segura e eficiente dos moto
 
 2. Especificações dos Motores
 Tipo de Motor: Motor de passo
-Faixa de Temperatura de Operação: 0°C a 70°C
-Corrente Nominal: 2 A
-Nível Máximo de Vibração Tolerada: 5 mm/s²
+Faixa de Temperatura de Operação: 0°C a 45°C
+Corrente Nominal: 5 A
+Nível Máximo de Vibração Tolerada: 5.5 mm/s²
 
 3. Riscos de Operação
 3.1 Riscos de Temperatura Elevada
-Perigo: Temperaturas elevadas acima dos níveis operacionais recomendados (acima de 70°C) podem causar o seguinte:
+Perigo: Temperaturas elevadas acima dos níveis operacionais recomendados (acima de 45°C) podem causar o seguinte:
 
 Danos aos componentes internos do motor, como isolamento dos enrolamentos.
 Aumento da resistência elétrica, levando a um aquecimento adicional.
@@ -29,7 +29,7 @@ Certifique-se de que o ambiente de operação do braço robótico tenha ventila�
 Reduza a carga operacional do braço robótico para diminuir o esforço do motor e, consequentemente, a geração de calor.
 
 3.2 Riscos de Corrente Elevada
-Perigo: Correntes acima do limite nominal (2 A) resultam em:
+Perigo: Correntes acima do limite nominal (5 A) resultam em:
 
 Sobrecarga nos enrolamentos dos motores, causando aumento significativo da temperatura.
 Queima dos enrolamentos, resultando em curto-circuitos ou falha total do motor.
@@ -46,7 +46,7 @@ Verifique periodicamente as fontes de alimentação para garantir que forneçam 
 Distribua a carga entre múltiplos motores, se possível, para evitar sobrecarga em um único componente.
 
 3.3 Riscos de Vibração Excessiva
-Perigo: Vibrações muito elevadas (acima de 5 mm/s²) podem resultar em:
+Perigo: Vibrações muito elevadas (acima de 5.5 mm/s²) podem resultar em:
 
 Desgaste acelerado dos rolamentos e eixos do motor.
 Perda de precisão no controle de posicionamento, causando movimentos erráticos ou imprecisos do braço robótico.
@@ -80,7 +80,7 @@ Substitua qualquer motor danificado ou sobreaquecido antes de retomar as operaç
 """
 
 formato_pdf = f"""
-[Preencha esse relatório com as informações retornadas pela função consulta, não exiba essa frase]
+[Preencha esse relatório de acordo com as informações retornadas pela função consulta. Não exiba essa frase]
 Relatório Técnico
 Data: [Data, no formato dia/mês/ano, em que o relatório foi gerado]
 Empresa/Organização: FIAP em parceria com a Reply
@@ -90,7 +90,7 @@ Nome/Modelo da Máquina: BR-FGRF
 Número de Série: 2512A
 Localização: Linha de Montagem
 2. Resumo Executivo
-Objetivo do Relatório: [Coloque o objetivo do relátorio]
+Objetivo do Relatório: [Coloque o objetivo do relátorio, de acordo com as informações que serão colocadas no relatório]
 Principais Constatações:[Se um ou mais limites tenham sido ultrapassados, informe os problemas identificados durante a operação do braço.]
 3. Descrição Técnica da Máquina
 Especificações Técnicas:O braço é equipado com 4 motores de passo.
@@ -115,6 +115,8 @@ Dias com limites de leitura ultrapassados:
     [Insira em formato de listae em ordem crescente. por exemplo:
     -07/10/2024
     -18/10/2024]
+    [Caso a quantidade de dias em sequência seja maior que 4, faça da seguinte forma:
+    -07/10/2024...20/10/2024]
 5. Procedimentos de Inspeção ou Manutenção
 Métodos Utilizados: Os dados de temperatura, corrente e vibração são monitorados continuamente durante a operação da máquina.
 Ferramentas e Instrumentos:
@@ -123,7 +125,7 @@ Ferramentas e Instrumentos:
     Um sensor de corrente para medir a corrente elétrica que chega aos motores.
 Critérios de Avaliação: Os limites de operação para temperatura, corrente e vibração são definidos no manual de instruções do braço robótico.
 6. Diagnóstico e Condição da Máquina
-Desempenho Atual: [Coloque uma resposta condizente com os dados apresentados]
+Desempenho Atual: [Coloque uma resposta condizente com os dados apresentados, levando em conta o limite de cada medida, e que a temperatura ambiente é 25°C]
 Análise de Vibrações, Ruídos, etc.: [Coloque uma resposta condizente com os dados apresentados]
 Desgaste e Danos: Não foram observados sinais de desgaste ou danos nos componentes do braço robótico.
 7. Recomendações
@@ -131,7 +133,7 @@ Reparos Necessários: Não há reparos necessários no momento.
 Manutenção Preventiva: [Sugestões de ações preventivas para melhorar o desempenho ou evitar falhas]
 Ações Corretivas: Nenhuma ação corretiva é necessária.
 8. Conclusão
-Resumo das Condições: [Avaliação geral da condição da máquina]
-Prognóstico: [Expectativas para o funcionamento futuro da máquina com base no estado atual]
+Resumo das Condições: [Avaliação geral da condição da máquina, levando em conta o limite de cada medida, os dados apresentados e que a temperatura ambiente é 25°C]
+Prognóstico: [Expectativas para o funcionamento futuro da máquina com base no estado atual, levando em conta o limite de cada medida, e que a temperatura ambiente é 25°C]
 
 """

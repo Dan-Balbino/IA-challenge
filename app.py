@@ -5,10 +5,10 @@ from AI import AI_request, AI_predict, AI_pdf
 
 """
 Alterar banco de dados: AI_functions
-Alterar tabela: Ai_specs, linha 162
+Alterar tabela: AI_specs, linha 162
 """
 
-app = Flask(__name__)
+app = Flask(__name__) 
 
 @app.route("/")
 def index():
