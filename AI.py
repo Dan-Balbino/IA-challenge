@@ -53,6 +53,9 @@ def criar_pdf(texto, imagem_cabecalho=None, nome_arquivo='relatorio.pdf', imagem
     # Configuração da fonte
     pdf.set_font("Arial", size=12)
 
+    # Converter o texto para o encoding latin-1
+    texto = texto.encode('latin-1', 'replace').decode('latin-1')
+
     # Separar o texto em linhas e formatar negrito para os títulos
     linhas = texto.split('\n')
     for i, linha in enumerate(linhas):
@@ -78,6 +81,7 @@ def criar_pdf(texto, imagem_cabecalho=None, nome_arquivo='relatorio.pdf', imagem
 
     # Gerar o arquivo PDF
     pdf.output(nome_arquivo)
+
 
 def AI_pdf(user_input: str):
     r_pdf = AI.send_message(f"{user_input}")

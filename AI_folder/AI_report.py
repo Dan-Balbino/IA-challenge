@@ -80,60 +80,70 @@ Substitua qualquer motor danificado ou sobreaquecido antes de retomar as operaç
 """
 
 formato_pdf = f"""
-[Preencha esse relatório de acordo com as informações retornadas pela função consulta. Não exiba essa frase]
 Relatório Técnico
 Data: [Data, no formato dia/mês/ano, em que o relatório foi gerado]
 Empresa/Organização: FIAP em parceria com a Reply
 Nome do Técnico ou Engenheiro Responsável: [Seu nome] + Grupo FailGuard
+
 1. Identificação da Máquina
 Nome/Modelo da Máquina: BR-FGRF
 Número de Série: 2512A
 Localização: Linha de Montagem
+
 2. Resumo Executivo
-Objetivo do Relatório: [Coloque o objetivo do relátorio, de acordo com as informações que serão colocadas no relatório]
-Principais Constatações:[Se um ou mais limites tenham sido ultrapassados, informe os problemas identificados durante a operação do braço.]
+Objetivo do Relatório: [Descreva o objetivo do relatório, considerando os dados apresentados e os dias que tiveram limites ultrapassado, e que, quanto mais próximo do limite uma leitura for, mais dados durante o dia, ou o mês, passaram aquela limite.]
+
+Principais Constatações: [Fale das principais constatações, considerando os dados apresentados e os dias que tiveram limites ultrapassado, e que, quanto mais próximo do limite uma leitura for, mais dados durante o dia, ou o mês, passaram aquela limite.]
+
 3. Descrição Técnica da Máquina
-Especificações Técnicas:O braço é equipado com 4 motores de passo.
-Componentes: Os principais componentes do braço robótico incluem:
-    Motores de passo - (Nema 17)
-    Câmera térmica para monitoramento da temperatura - (AMG88xx)
-    Sensores de vibração - (MPU6050)
-    Sensor de corrente elétrica - (ACS712)
-    Controlador de movimento - (Arduino Mega / CNC Shield)
-    Sistema de comunicação - (Esp32)
+Especificações Técnicas: O braço é equipado com 4 motores de passo.
+Componentes:
+
+Motores de passo - Nema 17
+Câmera térmica para monitoramento da temperatura - AMG88xx
+Sensores de vibração - MPU6050
+Sensor de corrente elétrica - ACS712
+Controlador de movimento - Arduino Mega / CNC Shield
+Sistema de comunicação - Esp32
 4. Histórico de Operação
 Horas de Trabalho: 26.5 horas
 Ciclos de Operação: 300 ciclos realizados
+
 Condições de Operação:
-    Temperatura ambiente: 25°C
-    Temperatura média do braço durante a operação: [Temperatura do braço]
-    Corrente média do braço: [Corrente do braço]
-    Vibração da base: [Vibração da base]
-    Vibração do braço: [Vibração do braço]
-    Vibração da garra: [Vibração da garra]   
+
+Temperatura ambiente: 25°C
+Temperatura média do braço durante a operação: [Temperatura do braço]
+Corrente média do braço: [Corrente do braço]
+Vibração da base: [Vibração da base]
+Vibração do braço: [Vibração do braço]
 Dias com limites de leitura ultrapassados:
-    [Insira em formato de listae em ordem crescente. por exemplo:
-    -07/10/2024
-    -18/10/2024]
-    [Caso a quantidade de dias em sequência seja maior que 4, faça da seguinte forma:
-    -07/10/2024...20/10/2024]
+
+[Insira em formato de lista e em ordem crescente, por exemplo:
+-07/10/2024
+-18/10/2024]
+[Caso a quantidade de dias em sequência seja maior que 4, faça da seguinte forma:
+-07/10/2024...20/10/2024]
 5. Procedimentos de Inspeção ou Manutenção
-Métodos Utilizados: Os dados de temperatura, corrente e vibração são monitorados continuamente durante a operação da máquina.
+Métodos Utilizados: Os dados de temperatura, corrente e vibração foram monitorados continuamente durante a operação da máquina.
 Ferramentas e Instrumentos:
-    Uma câmera térmica para monitorar a temperatura..
-    3 sensores de vibração para monitorar a vibração em pontos do braço.
-    Um sensor de corrente para medir a corrente elétrica que chega aos motores.
-Critérios de Avaliação: Os limites de operação para temperatura, corrente e vibração são definidos no manual de instruções do braço robótico.
+    Câmera térmica para monitoramento da temperatura
+    Sensores de vibração (3 pontos do braço)
+    Sensor de corrente elétrica para medição da corrente dos motores
+    Critérios de Avaliação: Os limites de operação para temperatura, corrente e vibração foram baseados no manual de instruções do braço robótico.
 6. Diagnóstico e Condição da Máquina
-Desempenho Atual: [Coloque uma resposta condizente com os dados apresentados, levando em conta o limite de cada medida, e que a temperatura ambiente é 25°C]
-Análise de Vibrações, Ruídos, etc.: [Coloque uma resposta condizente com os dados apresentados]
-Desgaste e Danos: Não foram observados sinais de desgaste ou danos nos componentes do braço robótico.
+Desempenho Atual: [Fale do desempenho atual do braço robótico, considerando os dados apresentados e os dias que tiveram limites ultrapassado, e que, quanto mais próximo do limite uma leitura for, mais dados durante o dia, ou o mês, passaram aquela limite.]
+
+Análise de Vibrações, Ruídos, etc.: 
+
+Desgaste e Danos: Não foram observados sinais visíveis de desgaste ou danos nos componentes principais do braço robótico.
+
 7. Recomendações
 Reparos Necessários: Não há reparos necessários no momento.
-Manutenção Preventiva: [Sugestões de ações preventivas para melhorar o desempenho ou evitar falhas]
-Ações Corretivas: Nenhuma ação corretiva é necessária.
-8. Conclusão
-Resumo das Condições: [Avaliação geral da condição da máquina, levando em conta o limite de cada medida, os dados apresentados e que a temperatura ambiente é 25°C]
-Prognóstico: [Expectativas para o funcionamento futuro da máquina com base no estado atual, levando em conta o limite de cada medida, e que a temperatura ambiente é 25°C]
+Manutenção Preventiva: Sugere-se a verificação periódica dos motores e sensores de vibração para garantir que estejam funcionando corretamente. Também é recomendável revisar os ciclos de operação para evitar sobrecarga.
+Ações Corretivas: Nenhuma ação corretiva imediata é necessária, mas uma manutenção preventiva pode evitar futuros problemas operacionais.
 
+8. Conclusão
+Resumo das Condições: [Dê um resumo das condições, considerando os dados apresentados e os dias que tiveram limites ultrapassado.]
+
+Prognóstico: O braço robótico deve continuar operando de forma eficiente, desde que os procedimentos de manutenção preventiva sejam seguidos e que o sistema seja monitorado regularmente para evitar sobrecargas. Os desvios observados não parecem comprometer o funcionamento imediato da máquina, mas devem ser observados com atenção.
 """
